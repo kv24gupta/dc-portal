@@ -430,6 +430,9 @@ a:hover {
   display: flex;
   flex-flow: wrap-reverse;
 }
+/* .carousel-inner{
+  padding: 0 1rem ;
+} */
 
 .carousel,
 .carousel-inner,
@@ -454,8 +457,8 @@ a:hover {
 
 .carousel-indicators button {
   display: inline-block;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   margin: 0 8px;
   background: #333;
   border-radius: 50%;
@@ -465,4 +468,15 @@ a:hover {
 
 .carousel-indicators button .active {
   opacity: 1;
+}
+
+.carousel-buttons button {
+  height: 1.7rem;
+  white-space: nowrap;
+  font-size: 0.9vw;
+  padding: 0 2px;
+  margin: 1px 1.666px !important;
+  background: #dbe2e9;
+  color: #333f48;
+  max-width: 3.7rem;
 }
