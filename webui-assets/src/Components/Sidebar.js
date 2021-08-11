@@ -75,7 +75,7 @@ export default class Sidebar extends React.Component {
               <img
                 className="img-fluid"
                 alt=""
-                src="assets/src/images/Icon-Settings.svg"
+                src="assets/src/images/Icon-Subscriptions.svg"
               />{" "}
               MANAGE SUBSCRIPTIONS
             </a>
