@@ -49,7 +49,7 @@ export default class CarouselItem extends React.Component {
                                     ? service.img.style
                                     : {}
                                 }
-                              ></img>
+                              />
                             </div>
                           </div>
                         </a>
@@ -82,6 +82,43 @@ export default class CarouselItem extends React.Component {
                             }
                           )}
                         </div>
+                        {service.buttons.displayButtons ? (
+                          <div className="row carousel-buttons px-3 py-1">
+                            {console.log("buttons: ", service.buttons)}
+                            {service.buttons.buttonInfo.map(
+                              (buttonData, index) => {
+                                return (
+                                  <button
+                                    key={index}
+                                    type="button"
+                                    class="btn btn-secondary btn-sm"
+                                    onClick={
+                                      buttonData.onClick != ""
+                                        ? buttonData.onClick
+                                        : "#"
+                                    }
+                                  >
+                                    {buttonData.buttonName == "Open" ? (
+                                      <img
+                                        className="img-fluid"
+                                        src="assets/src/images/Icon-Open.svg"
+                                        alt="Open-Icon"
+                                        style={{ width: "25%" }}
+                                      />
+                                    ) : (
+                                      ""
+                                    )}
+                                    {buttonData.buttonName == "dots"
+                                      ? ".  .  ."
+                                      : buttonData.buttonName}
+                                  </button>
+                                );
+                              }
+                            )}
+                          </div>
+                        ) : (
+                          ""
+                        )}
                       </div>
                     </div>
                   );
