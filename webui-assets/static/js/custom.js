@@ -1,5 +1,6 @@
 $(document).ready(async function () {
   var authToken = getToken("ec-config");
+  console.log("AuthToken: ",authToken);
   let user = atob(authToken.split(".")[1]).split(".")[0];
   console.log("Token: ",user);
   let userApi =
