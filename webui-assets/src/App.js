@@ -10,6 +10,8 @@ import Dive from "./Container/Dive.js";
 import DivePower from "./Container/DivePower.js";
 import NewEngagementRequest from "./Container/NewEngagementRequest.js";
 
+const API_ENDPOINT = "/v1.2beta/dcsc/api/";
+
 export default class App extends React.Component {
   /*  componentDidMount(){
 
@@ -29,10 +31,17 @@ export default class App extends React.Component {
       headerText: "DASHBOARD",
       subHeaderText: "GLOBAL",
       subHeaderOpts: [],
+      authToken: "",
+      endPoint: API_ENDPOINT,
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    let authToken = this.getToken("ec-config");
+    this.setState({
+      authToken: authToken,
+    });
+  }
 
   componentDidUpdate(prevprops, prevstate) {}
 
@@ -56,6 +65,21 @@ export default class App extends React.Component {
     });
 
     // console.log("List of headeropts: ", options);
+  }
+
+  getToken(name) {
+    var cookieName = name + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(";");
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(cookieName) == 0) {
+        return c.substring(cookieName.length, c.length);
+      }
+    }
   }
 
   servedView() {
@@ -108,6 +132,8 @@ export default class App extends React.Component {
             clickEvent={this.switchPage.bind(this)}
             persona={this.state.subHeaderText}
             setPersonaHandler={this.setPersonaOptions.bind(this)}
+            baseUrl={this.state.endPoint}
+            authToken={this.state.authToken}
           />
         );
       default:
