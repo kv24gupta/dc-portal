@@ -19,7 +19,7 @@ export default class CenterHeader extends React.Component {
   } */
 
   render() {
-    console.log("Persona Options: ", this.props.subHeaderOpts);
+    // console.log("Persona Options: ", this.props.subHeaderOpts);
     return (
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="headers row">
@@ -49,7 +49,9 @@ export default class CenterHeader extends React.Component {
                   GLOBAL
                 </a>
                 {this.props.subHeaderOpts.map((option, index) => {
-                  console.log("Option: ", option);
+                  {
+                    /* console.log("Option: ", option); */
+                  }
                   return (
                     <a
                       className="dropdown-item"
