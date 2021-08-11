@@ -1,11 +1,14 @@
 import React, { Fragment } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const TOKEN_REGEX = /window\.formToken = "(\w+)";/;
 const APP_VERSION = "1.96.0";
-const TOKEN_URL =
-  "https://app.smartsheet.com/b/form/74f7e5c706d04aca841df70661a5631b";
-const FORM_SUBMIT_BASE_URL = "https://forms.smartsheet.com/";
-const FORM_SUBMIT_PATH = "api/submit/74f7e5c706d04aca841df70661a5631b";
+// const TOKEN_URL =
+//   "https://app.smartsheet.com/b/form/74f7e5c706d04aca841df70661a5631b";
+// const FORM_SUBMIT_BASE_URL = "https://forms.smartsheet.com/";
+// const FORM_SUBMIT_PATH = "api/submit/74f7e5c706d04aca841df70661a5631b";
+
+const BASEURL = "https://dc-portal-1x.run.aws-usw02-dev.ice.predix.io";
 
 export default class NewEngagementRequest extends React.Component {
   constructor(props) {
@@ -32,7 +35,7 @@ export default class NewEngagementRequest extends React.Component {
         EQ1v55l: { type: "STRING", value: "" },
         MeOjkkJ: { type: "STRING", value: "" },
         EMAIL_RECEIPT: { type: "STRING", value: "" },
-        CAPTCHA_KEY: {
+        /* CAPTCHA_KEY: {
           type: "CAPTCHA_VALUE",
           value: {
             token:
@@ -40,7 +43,7 @@ export default class NewEngagementRequest extends React.Component {
             siteKey: "6LfbDqAUAAAAAPc856qavjKSEVbYbOIj3lAb2x3l",
             submitCaptchaTimeElapsed: 169,
           },
-        },
+        }, */
       },
       submissionToken: "",
       formDisplay: "block",
@@ -70,7 +73,7 @@ export default class NewEngagementRequest extends React.Component {
 
     this.props.setPersonaHandler(serviceNames);
 
-    axios.request({
+    /* axios.request({
       baseURL: TOKEN_URL,
       method: "GET",
       responseType: "text",
@@ -87,7 +90,7 @@ export default class NewEngagementRequest extends React.Component {
         this.state.submissionToken = tokenRegexResult[1];
         console.log("SubToken: ", this.state.submissionToken);
       },
-    });
+    }); */
 
     // disable past dates
     $(function () {
@@ -168,7 +171,7 @@ export default class NewEngagementRequest extends React.Component {
       formMsgDisplay: "block",
     });
 
-    const dataJson = JSON.stringify(this.state.formData);
+    /* const dataJson = JSON.stringify(this.state.formData);
     const dataBlob = new Blob([dataJson], {
       type: "application/json",
     });
@@ -176,15 +179,19 @@ export default class NewEngagementRequest extends React.Component {
     const formData = new FormData();
     formData.append("data", dataBlob);
 
-    const submissionToken = this.state.submissionToken;
+    const submissionToken = this.state.submissionToken; */
 
-    const postForm = axios
+    /*    const postForm = axios
       .request({
-        baseURL: FORM_SUBMIT_BASE_URL,
-        url: FORM_SUBMIT_PATH,
+        baseURL: `${this.props.baseURL}`,
+        url: `${this.props.path}`,
         method: "POST",
         data: formData,
         headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          authorization: "Bearer " + `${this.props.authToken}`,
+
           "x-smar-submission-token": submissionToken,
           "x-smar-forms-version": APP_VERSION,
           "x-smar-is-user": "false",
@@ -201,7 +208,30 @@ export default class NewEngagementRequest extends React.Component {
         this.setState({
           formSuccessMsg: "Unsuccessful",
         });
+      }); */
+
+    const dataJson = Object.assign({}, this.state.formData);
+
+    dataJson.parent = "1d045bab-bf8e-4719-8634-1d7bc9b6ab80";
+    dataJson.name = "New Engagement Request";
+
+    // const apiEndPoint = BASEURL + this.props.baseUrl + "formdata-" + uuidv4()
+    const apiEndPoint = this.props.baseUrl + "formdata-" + uuidv4();
+
+    fetch(apiEndPoint, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + this.props.authToken,
+      },
+      body: JSON.stringify(dataJson),
+    }).then((response) => {
+      this.setState({
+        formSuccessMsg: "Successful",
       });
+      console.log("Successful Post: ", response);
+    });
   }
 
   // istanbul ignore next
@@ -210,13 +240,13 @@ export default class NewEngagementRequest extends React.Component {
     return (
       <Fragment>
         <div className="container-lg w-100 p-3 borderStyle">
-          <iframe
+          {/* <iframe
             src="https://app.smartsheet.com/b/form/74f7e5c706d04aca841df70661a5631b"
             title="SmartSheet for New Engagement Request"
             style={{ height: "75vh", width: "100%" }}
-          ></iframe>
+          ></iframe> */}
           {/* <div className="titles text-center">NEW ENGAGEMENT REQUEST</div>   */}
-          {/*  <div
+          <div
             className="container post-submit-msg text-center"
             style={{ display: this.state.formMsgDisplay }}
           >
@@ -449,7 +479,7 @@ export default class NewEngagementRequest extends React.Component {
             <button type="submit" className="btn btn-primary">
               Submit
             </button>
-          </form> */}
+          </form>
         </div>
       </Fragment>
     );
