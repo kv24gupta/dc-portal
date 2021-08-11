@@ -7,6 +7,7 @@ export default class DivePower extends React.Component {
 
   componentDidMount() {
     this.highChart();
+    this.props.setPersonaHandler([]);
   }
 
   // istanbul ignore next
