@@ -30,6 +30,35 @@ export default class Dashboard extends React.Component {
           displayPermissions: {
             displayCard: true,
           },
+          buttons: {
+            displayButtons: false,
+            buttonInfo: [
+              {
+                buttonName: "Open",
+                onClick: "",
+              },
+              {
+                buttonName: "Users",
+                onClick: "",
+              },
+              {
+                buttonName: "Api's",
+                onClick: "",
+              },
+              {
+                buttonName: "Dashboard",
+                onClick: "",
+              },
+              {
+                buttonName: "Remove",
+                onClick: "",
+              },
+              {
+                buttonName: "dots",
+                onClick: "",
+              },
+            ],
+          },
         },
         {
           serviceName: "ENTERPRISE CONNECT",
@@ -51,6 +80,35 @@ export default class Dashboard extends React.Component {
           },
           displayPermissions: {
             displayCard: true,
+          },
+          buttons: {
+            displayButtons: false,
+            buttonInfo: [
+              {
+                buttonName: "Open",
+                onClick: "",
+              },
+              {
+                buttonName: "Users",
+                onClick: "",
+              },
+              {
+                buttonName: "Api's",
+                onClick: "",
+              },
+              {
+                buttonName: "Dashboard",
+                onClick: "",
+              },
+              {
+                buttonName: "Remove",
+                onClick: "",
+              },
+              {
+                buttonName: "dots",
+                onClick: "",
+              },
+            ],
           },
         },
         {
@@ -74,6 +132,35 @@ export default class Dashboard extends React.Component {
           displayPermissions: {
             displayCard: true,
           },
+          buttons: {
+            displayButtons: false,
+            buttonInfo: [
+              {
+                buttonName: "Open",
+                onClick: "",
+              },
+              {
+                buttonName: "Users",
+                onClick: "",
+              },
+              {
+                buttonName: "Api's",
+                onClick: "",
+              },
+              {
+                buttonName: "Dashboard",
+                onClick: "",
+              },
+              {
+                buttonName: "Remove",
+                onClick: "",
+              },
+              {
+                buttonName: "dots",
+                onClick: "",
+              },
+            ],
+          },
         },
         {
           serviceName: "GLOBALSCAPE",
@@ -95,6 +182,35 @@ export default class Dashboard extends React.Component {
           },
           displayPermissions: {
             displayCard: true,
+          },
+          buttons: {
+            displayButtons: false,
+            buttonInfo: [
+              {
+                buttonName: "Open",
+                onClick: "",
+              },
+              {
+                buttonName: "Users",
+                onClick: "",
+              },
+              {
+                buttonName: "Api's",
+                onClick: "",
+              },
+              {
+                buttonName: "Dashboard",
+                onClick: "",
+              },
+              {
+                buttonName: "Remove",
+                onClick: "",
+              },
+              {
+                buttonName: "dots",
+                onClick: "",
+              },
+            ],
           },
         },
       ],
