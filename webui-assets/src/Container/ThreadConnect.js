@@ -35,6 +35,35 @@ export default class ThreadConnect extends React.Component {
           displayPermissions: {
             displayCard: true,
           },
+          buttons: {
+            displayButtons: true,
+            buttonInfo: [
+              {
+                buttonName: "Open",
+                onClick: "",
+              },
+              {
+                buttonName: "Users",
+                onClick: "",
+              },
+              {
+                buttonName: "API's",
+                onClick: "",
+              },
+              {
+                buttonName: "Dashboard",
+                onClick: "",
+              },
+              {
+                buttonName: "Remove",
+                onClick: "",
+              },
+              {
+                buttonName: "dots",
+                onClick: "",
+              },
+            ],
+          },
         },
         {
           serviceName: "GPAS-Lite",
@@ -59,9 +88,54 @@ export default class ThreadConnect extends React.Component {
           displayPermissions: {
             displayCard: true,
           },
+          buttons: {
+            displayButtons: true,
+            buttonInfo: [
+              {
+                buttonName: "Open",
+                onClick: "",
+              },
+              {
+                buttonName: "Users",
+                onClick: "",
+              },
+              {
+                buttonName: "API's",
+                onClick: "",
+              },
+              {
+                buttonName: "Dashboard",
+                onClick: "",
+              },
+              {
+                buttonName: "Remove",
+                onClick: "",
+              },
+              {
+                buttonName: "dots",
+                onClick: "",
+              },
+            ],
+          },
         },
       ],
+      highChartData: [
+        ["Jan", 24.2],
+        ["Feb", 20.8],
+        ["Mar", 14.9],
+        ["Apr", 13.7],
+        ["May", 13.1],
+        ["Jun", 12.7],
+        ["Jul", 12.4],
+        ["Aug", 12.2],
+        ["Sep", 12.0],
+        ["Oct", 11.7],
+        ["Nov", 11.5],
+        ["Dec", 11.2],
+      ],
     };
+
+    this.handleHighChartFilter = this.handleHighChartFilter.bind(this);
   }
 
   componentDidMount() {
@@ -146,6 +220,28 @@ export default class ThreadConnect extends React.Component {
     }
   }
 
+  handleHighChartFilter(event) {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    const regex = /\d\d|\d/gm;
+    // console.log("Selected Value: ",value)
+    const currentHighChartData = Object.assign([], this.state.highChartData);
+    var newHighChartData = [];
+    var monthValue = parseInt(value.match(regex)[0]);
+    // console.log("Month Value: ",monthValue)
+
+    for (var i = 0; i < monthValue; i++) {
+      newHighChartData.push(currentHighChartData[i]);
+    }
+
+    Highcharts.charts[0].series[0].update({
+      data: newHighChartData,
+    });
+
+    // console.log("New Value: ",newHighChartData)
+  }
+
   // istanbul ignore next
   highChart() {
     Highcharts.chart("container", {
@@ -189,20 +285,7 @@ export default class ThreadConnect extends React.Component {
       series: [
         {
           /* name: 'Population', */
-          data: [
-            ["Jan", 24.2],
-            ["Feb", 20.8],
-            ["Mar", 14.9],
-            ["Apr", 13.7],
-            ["May", 13.1],
-            ["Jun", 12.7],
-            ["Jul", 12.4],
-            ["Aug", 12.2],
-            ["Sep", 12.0],
-            ["Oct", 11.7],
-            ["Nov", 11.5],
-            ["Dec", 11.2],
-          ],
+          data: this.state.highChartData,
           color: "#1f78b4",
           dataLabels: {
             /*  enabled: true, */
@@ -257,6 +340,20 @@ export default class ThreadConnect extends React.Component {
             <div className="col-6">
               <div className="card border-0">
                 <div className="card-body p-0">
+                  <select
+                    className="col-sm-4 borderStyle service-details"
+                    name=""
+                    id="highChartFilter"
+                    onChange={this.handleHighChartFilter}
+                  >
+                    <option value="" disabled selected>
+                      filter
+                    </option>
+                    <option value="3 Months">3 Months</option>
+                    <option value="6 Months">6 Months</option>
+                    <option value="9 Months">9 Months</option>
+                    <option value="12 Months">12 Months</option>
+                  </select>
                   <div id="container" style={{ height: "15rem" }}></div>
                 </div>
               </div>
