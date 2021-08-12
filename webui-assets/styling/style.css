@@ -480,3 +480,57 @@ a:hover {
   color: #333f48;
   max-width: 3.7rem;
 }
+
+#gs_event-table .btn-primary{
+  /* background-color: #0C2340; */
+  background-color: #005eb8;
+  padding: 3px 12px;
+}
+#gs_event-table td, #gs_event-table th {
+  padding: 7px;
+}
+#gs_event-table td.gs_event-col {
+  width: 34%;
+}
+.gs-container {
+  padding: 20px;
+}
+.gs-container form  { 
+  /* display: table;  */
+   width: 100%;    }
+.gs-container p     {
+   /* display: table-row;  */
+   position: relative; 
+  }
+.gs-container label { 
+  /* display: table-cell; */
+  padding-right: 30px;
+  /* padding-bottom: 16px; */
+ }
+ .gs-container input[type="text"]{
+  /* display: table-cell; */
+  width: 100%; 
+  /* padding: 10px; */
+  /* text-align: center; */
+}
+.gs-container i {
+  position: absolute;
+  right: 0px;
+  color: grey;
+
+}
+
+.gs-container {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.icon {
+  padding: 7px;
+  min-width: 40px;
+  position: absolute;
+  right: 4px;
+}
+.modal-dialog {
+  max-width: 60%;
+}
