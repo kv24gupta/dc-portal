@@ -63,25 +63,25 @@ export default class EventList extends React.Component {
   assignSsoFun(eventname){
     this.setState({
       showSso: true,
-      // selectedEventName: eventname
+      selectedEventName: eventname
     })
   }
   showEnableFun(eventname){
     this.setState({
-      showSso: true,
-      // selectedEventName: eventname
+      showEnable: true,
+      selectedEventName: eventname
     })
   }
   showDisableFun(eventname){
     this.setState({
-      showSso: true,
-      // selectedEventName: eventname
+      showDisable: true,
+      selectedEventName: eventname
     })
   }
   showRunNowFun(eventname){
     this.setState({
-      showSso: true,
-      // selectedEventName: eventname
+      showRunNow: true,
+      selectedEventName: eventname
     })
   }
 
@@ -97,10 +97,10 @@ export default class EventList extends React.Component {
                 return (<tr key={index}>
                   <td><input type="checkbox" id="globalCheckCox" name="gsCheck" value="" /></td>
                   <td className="gs_event-col">{eventname}</td>
-                  <td><button className="btn btn-primary" onClick={()=> this.showEnableFun(eventname)}>Enable</button> 
-                  <button className="btn btn-primary" onClick={()=> this.showDisableFun(eventname)}>Disable</button> </td>
+                  <td><button className="btn btn-primary" onClick={()=> this.showEnableFun(eventname)}>Enable</button> </td>
+                  <td><button className="btn btn-primary" onClick={()=> this.showDisableFun(eventname)}>Disable</button> </td>
 
-                  <td><button className="btn btn-primary" >Run Now</button> </td>
+                  <td><button className="btn btn-primary" onClick={()=> this.showRunNowFun(eventname)}>Run Now</button> </td>
                   <td><button className="btn btn-primary" onClick={() => this.viewScheduleFun(eventname)}>View Schedule</button></td>
                   <td><button className="btn btn-primary" onClick={() => this.assignSsoFun(eventname)}>assign SSO</button></td>
                 </tr>)
@@ -110,8 +110,10 @@ export default class EventList extends React.Component {
           {this.state.showModal && <ViewSchedule openModal={this.state.showModal} closeModal={this.closeModal} eventName={this.state.selectedEventName} />}
           {this.state.showSso && <AssignEventToSso openModal={this.state.showSso} closeModal={this.closeModal}  />}
 
-          {this.state.showModal && <Enable openModal={this.state.showModal} closeModal={this.closeModal} eventName={this.state.selectedEventName} />}
-          {this.state.showSso && <Disable openModal={this.state.showSso} closeModal={this.closeModal}  />}
+          {this.state.showEnable && <Enable openModal={this.state.showEnable} closeModal={this.closeModal} eventName={this.state.selectedEventName} />}
+          {this.state.showDisable && <Disable openModal={this.state.showDisable} closeModal={this.closeModal}  eventName={this.state.selectedEventName}/>}
+
+          {this.state.showRunNow && <RunNow openModal={this.state.showRunNow} closeModal={this.closeModal} eventName={this.state.selectedEventName} />}
         </div>
 
 
